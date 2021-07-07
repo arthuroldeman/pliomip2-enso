@@ -8,13 +8,13 @@ These codes have been used to create the data presented in the figures and table
 
 *Note: I will clean up the codes soon.*
 
-## Overview which figures and tables from which codes:
+### Overview which figures and tables from which codes:
 
-Figure1.ipynb: Figure 1
-ENSO_diagnostics.ipynb: Figure S1, Figure 2
-spectral_analysis.ipynb: Figure S2, Figure 3, Figure 4, Figure S7
-EOF_analysis.ipynb: Figure S3, Figure 5, Figure 10, Figure 11, Table 2
-ENSO_flavours.ipynb: Figure 6
-zonal_SSTs.ipynb: Figure 7, Figure S4, Figure 8, Figure 9, Table 3
-CESM2_robustness.ipynb: Figure S5
-MIROC4m_robustness.ipynb: Figure S6
+Figure1.ipynb: Figure 1\
+ENSO_diagnostics.ipynb: Figure S1, Figure 2\
+spectral_analysis.ipynb: Figure S2, Figure 3, Figure 4, Figure S7\
+EOF_analysis.ipynb: Figure S3, Figure 5, Figure 10, Figure 11, Table 2\
+ENSO_flavours.ipynb: Figure 6\
+zonal_SSTs.ipynb: Figure 7, Figure S4, Figure 8, Figure 9, Table 3\
+CESM2_robustness.ipynb: Figure S5\
+MIROC4m_robustness.ipynb: Figure S6\
