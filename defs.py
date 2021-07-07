@@ -222,7 +222,7 @@ def FFT_spectrum(time_series, normalise = True, scale = True, trend = None):
     
     return freq, freq_series_original
 
-def MT_spectrum(time_series, normalise = True, scale = True, trend = None):
+def MT_spectrum(time_series, normalise = True, scale = True, trend = None, nbw = 2, ntapers = 3):
     
     # do trend removal and moving average here
     if trend == "linear":
@@ -236,8 +236,8 @@ def MT_spectrum(time_series, normalise = True, scale = True, trend = None):
         time_series = (time_series - np.mean(time_series))/np.std(time_series)
         
     spec, freq = mtspec.mtspec(
-                data=time_series, delta=1., time_bandwidth=2,
-                number_of_tapers=3, statistics=False)
+                data=time_series, delta=1., time_bandwidth=nbw,
+                number_of_tapers=ntapers, statistics=False)
     
     spec = spec[1:freq.argmax()]
     freq = freq[1:freq.argmax()]
@@ -248,7 +248,7 @@ def MT_spectrum(time_series, normalise = True, scale = True, trend = None):
     
     return freq, spec
 
-def Confidence_intervals(time_series, normalise=True, scale = True, trend = None, mode = 'FFT', N_surrogates = 1000):
+def Confidence_intervals(time_series, normalise=True, scale = True, trend = None, mode = 'FFT', N_surrogates = 1000, nbw = 2, ntapers = 3):
     
     # do trend removal and moving average here
     if trend == "linear":
@@ -295,7 +295,7 @@ def Confidence_intervals(time_series, normalise=True, scale = True, trend = None
         if mode == 'FFT':
             freq, spec = FFT_spectrum(mc_series[surrogate_i,:], normalise=False, scale=scale)
         elif mode == 'MT':
-            freq, spec = MT_spectrum(mc_series[surrogate_i,:], normalise=False, scale=scale)
+            freq, spec = MT_spectrum(mc_series[surrogate_i,:], normalise=False, scale=scale, nbw = nbw, ntapers = ntapers)
             
         # create array for spectra    
         if surrogate_i==0: 
