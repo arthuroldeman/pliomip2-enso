@@ -323,7 +323,7 @@ def mc_ar1_ARMA(phi, std, n, N=1000):
     
     return mc
 
-def EOF_SST_analysis(model = 'CCSM4', run = 'E280', latbound = 23, weights=None, n=1):
+def EOF_SST_analysis(model = 'CCSM4', run = 'E280', latbound = 23, weights=None, n=1, trend=None):
     
     """ Empirical Orthogonal Function analysis of SST(t,x,y) field;  """
 
@@ -359,7 +359,19 @@ def EOF_SST_analysis(model = 'CCSM4', run = 'E280', latbound = 23, weights=None,
     ## Select SSTs in tropical pacific
     ds = ds.sortby(ds.latitude)
     sst_TP = ds.tos.sel(latitude = slice(minlat, maxlat)).sel(longitude = slice(minlon, maxlon))
-        
+    
+    if trend=="linear":
+        fit = np.zeros([len(sst_TP["time"]), len(sst_TP["latitude"]), len(sst_TP["longitude"])])
+        t = range(len(sst_TP["time"]))
+        for i in range(len(sst_TP["latitude"])):
+            for j in range(len(sst_TP["longitude"])):
+                p = np.polyfit(t, sst_TP[:,i,j], 1)
+                l = t*p[0] + p[1]
+                fit[:,i,j] = sst_TP[:,i,j] - l    
+        sst_TP = xr.DataArray(data=fit, dims=["time", "latitude", "longitude"], 
+                              coords=dict(time=(["time"], sst_TP["time"]), latitude=(["latitude"], sst_TP["latitude"]), 
+                                         longitude=(["longitude"], sst_TP["longitude"])))
+    
     # Retrieve the leading EOF, expressed as the covariance between the leading PC
     # time series and the input xa anomalies at each grid point.
     solver = Eof(sst_TP, weights=weights, center=True)
