@@ -6,7 +6,7 @@ These codes have been used to create the data presented in the figures and table
 
 100 years SST data (anomalies as well as monthly means) of all PlioMIP2 ensemble members are available through Alan Haywood (a.m.haywood@leeds.ac.uk). Links to observational data (both HadISST and Pliocene reconstructions) are presented in the manuscript as well as the codes. I will provide a clearer overview on this page at a later stage.
 
-*Code finalised on August 25th*
+*Code finalised on August 25th 2021*
 
 ### Overview which figures and tables from which codes:
 
